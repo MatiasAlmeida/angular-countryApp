@@ -1,1 +1,20 @@
-<p>by-capital-page works!</p>
+<h2>Por capital</h2>
+<hr>
+
+<div class="row">
+  <div class="col">
+    <!-- SearchBox -->
+    <!-- recordar que si usamos [] para definir la property, debemos pasarle una expresion -->
+    <!-- por defecto las properties (sin []) toman una string -->
+    <shared-search-box
+      (onValue)="searchByCapital($event)"
+      placeholder="Buscar por capital"></shared-search-box>
+  </div>
+</div>
+
+<div class="row">
+  <div class="col">
+    <hr>
+    tabla de resultados
+  </div>
+</div>
