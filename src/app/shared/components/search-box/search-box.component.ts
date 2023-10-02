@@ -1,5 +1,5 @@
-import { Component, EventEmitter, Input, OnInit, Output } from '@angular/core';
-import { Subject, debounceTime } from 'rxjs';
+import { Component, EventEmitter, Input, OnDestroy, OnInit, Output } from '@angular/core';
+import { Subject, Subscription, debounceTime } from 'rxjs';
 const DEBOUNCE_TIMING = 400;
 
 @Component({
@@ -8,8 +8,9 @@ const DEBOUNCE_TIMING = 400;
   styles: [
   ]
 })
-export class SearchBoxComponent implements OnInit {
+export class SearchBoxComponent implements OnInit, OnDestroy{
   private debouncer: Subject<string> = new Subject();
+  private debouncerSubscription?: Subscription;
 
   @Input()
   public placeholder: string = '';
@@ -21,13 +22,17 @@ export class SearchBoxComponent implements OnInit {
   public onDebounce: EventEmitter<string> = new EventEmitter();
 
   ngOnInit(): void {
-    this.debouncer
-      .pipe(
-        debounceTime(DEBOUNCE_TIMING)
-      )
-      .subscribe( value => {
-        this.onDebounce.emit(value);
-      });
+    this.debouncerSubscription = this.debouncer
+    .pipe(
+      debounceTime(DEBOUNCE_TIMING)
+    )
+    .subscribe( value => {
+      this.onDebounce.emit(value);
+    });
+  }
+
+  ngOnDestroy(): void {
+    this.debouncerSubscription?.unsubscribe();
   }
 
   public emitSearch( value: string ): void {
