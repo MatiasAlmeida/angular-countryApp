@@ -7,7 +7,7 @@
     <!-- recordar que si usamos [] para definir la property, debemos pasarle una expresion -->
     <!-- por defecto las properties (sin []) toman una string -->
     <shared-search-box
-      (onValue)="searchByCountry($event)"
+      (onDebounce)="searchByCountry($event)"
       placeholder="Buscar por país"></shared-search-box>
   </div>
 </div>
