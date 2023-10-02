@@ -1,1 +1,20 @@
-<p>by-country-page works!</p>
+<h2>Por País</h2>
+<hr>
+
+<div class="row">
+  <div class="col">
+    <!-- SearchBox -->
+    <!-- recordar que si usamos [] para definir la property, debemos pasarle una expresion -->
+    <!-- por defecto las properties (sin []) toman una string -->
+    <shared-search-box
+      (onValue)="searchByCountry($event)"
+      placeholder="Buscar por país"></shared-search-box>
+  </div>
+</div>
+
+<div class="row">
+  <div class="col">
+    <hr>
+    <countries-country-table [countries]="countries"></countries-country-table>
+  </div>
+</div>
