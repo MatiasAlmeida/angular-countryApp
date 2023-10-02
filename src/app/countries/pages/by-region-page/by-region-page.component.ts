@@ -3,7 +3,7 @@ import { Country } from '../../interfaces/country';
 import { CountriesService } from '../../services/countries.service';
 
 @Component({
-  selector: 'app-by-region-page',
+  selector: 'countries-by-region-page',
   templateUrl: './by-region-page.component.html',
   styles: [
   ]
